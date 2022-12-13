@@ -14,7 +14,6 @@ const ListBox = styled.li`
 
 const List = ({list}) => {
   const [isComplete, setIsComplete] = useState(list.iscomplete);
-  console.log(list);
   const checkHandler = ({ target }) => {
     setIsComplete(!isComplete);
   };
@@ -34,7 +33,10 @@ const List = ({list}) => {
         {list.date}
       </div>
       <button>
-        delete
+        수정
+      </button>
+      <button>
+        삭제
       </button>
     </ListBox>
   );

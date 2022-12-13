@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.App {
+  text-align: center;
+}
+
+.main{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, 400px);
+  grid-template-rows: 312.67px ;
+}
+
+.main :nth-child(1){
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+
+.test{
+  
+
+}

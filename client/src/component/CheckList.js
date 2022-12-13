@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import List from "./List";
 import styled from "styled-components";
-import dumy from "../data/dumy.json"
+import listData from "../data/dumy"
 
 const CheckListBox = styled.div`
   width: 400px;
@@ -15,7 +15,7 @@ const CheckList = () => {
     <CheckListBox>
       <Header headText={"Check list"} />
       <ul>
-        {dumy.map((list, index) => {
+        {listData.map((list, index) => {
           return <List key={index} list={list}/>
         })}
       </ul>
