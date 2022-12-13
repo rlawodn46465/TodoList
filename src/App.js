@@ -1,9 +1,13 @@
-import './App.css';
+import "./App.css";
+import CalendarComponent from "./component/CalendarComponent";
+import CheckList from "./component/CheckList";
 
 function App() {
   return (
-    <div>
-    </div>
+    <>
+      <CheckList />
+      <CalendarComponent/>
+    </>
   );
 }
 
