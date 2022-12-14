@@ -7,10 +7,11 @@ import { useState } from "react";
 
 function App() {
   const [listId, setListId] = useState(null);
+  const [checkDay, setCheckDay] = useState('');
   return (
     <div className="main">
-      <CheckList setListId={setListId}/>
-      <CalendarComponent />
+      <CheckList checkDay={checkDay} setListId={setListId}/>
+      <CalendarComponent setCheckDay={setCheckDay}/>
       <CreateToDo listId={listId}/>
     </div>
   );

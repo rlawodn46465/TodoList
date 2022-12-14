@@ -10,27 +10,25 @@ const CheckListBox = styled.div`
   background-color: lightblue;
 `;
 
-const CheckList = ({setListId}) => {
+const CheckList = ({checkDay, setListId}) => {
   const [listData, setListData] = useState();
-  
+  const [day, setDay] = useState(checkDay);
   useEffect(() => {
     axios.get("http://localhost:8080/read").then((res) => {
-      setListData(res.data);
-      if(res.data.length === 0){
+    setListData(res.data); 
+    if(res.data.length === 0){
         setListId(1)
       } else {
         setListId(Number(res.data[res.data.length - 1].id) + 1)
       }
     });
-  }, []);
-  console.log(listData);
+  }, [checkDay]);
 
   return (
     <CheckListBox>
       <Header headText={"Check list"} />
       <ul>
-        {listData &&
-          listData.map((list, index) => {
+        {listData && listData.filter((todo) => todo.date === checkDay).map((list, index) => {
             return <List key={index} list={list}/>;
           })}
       </ul>

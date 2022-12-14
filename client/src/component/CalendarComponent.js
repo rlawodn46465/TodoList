@@ -9,20 +9,13 @@ const CalendarBox = styled.div`
   height: 312.67px;
 `;
 
-const CalendarComponent = () => {
-  const date = new Date()
+const CalendarComponent = ({setCheckDay}) => {
   const [value, onChange] = useState(new Date());
-  const changeDate = e => {
-    
-  }
-
-  console.log(value.toLocaleDateString());
+  setCheckDay(value.toLocaleDateString().replace(/ /g, "").slice(0, -1));
   return (
     <CalendarBox>
       <Header headText={"Calendar"} />
       <Calendar onChange={onChange} value={value} formatDay={(locale, date) => date.toLocaleDateString('en', {day: "numeric"})}/>
-      <div className="text-gray-500 mt-4">
-      </div>
     </CalendarBox>
   );
 };

@@ -25,7 +25,7 @@ const CreateToDo = ({listId}) => {
       id : listId,
       title : title,
       desc : desc,
-      date : date,
+      date : date.replace(/-/g, '.'),
       iscomplete : false
     }
     axios.post(`http://localhost:8080/create?${stringChange(list)}`)
