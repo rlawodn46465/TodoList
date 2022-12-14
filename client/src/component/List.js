@@ -14,7 +14,7 @@ const ListBox = styled.li`
   background-color: lightblue;
 `;
 
-const List = ({list}) => {
+const List = ({list, setUpdateData}) => {
   const navigate = useNavigate();
   const [isComplete, setIsComplete] = useState(list.iscomplete==='true');
   const checkHandler = ({ target }) => {
@@ -27,6 +27,14 @@ const List = ({list}) => {
       navigate('/')
       window.location.reload();   
     })
+  }
+
+  const listUpdate = () => {
+    const obj ={
+      id : list.id,
+      permit : false
+    }
+    setUpdateData(obj);
   }
 
   return (
@@ -43,7 +51,7 @@ const List = ({list}) => {
       <div>
         {list.date}
       </div>
-      <button>
+      <button onClick={listUpdate}>
         수정
       </button>
       <button onClick={listDelete}>

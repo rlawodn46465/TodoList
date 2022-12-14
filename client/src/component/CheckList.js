@@ -10,9 +10,8 @@ const CheckListBox = styled.div`
   background-color: lightblue;
 `;
 
-const CheckList = ({checkDay, setListId}) => {
+const CheckList = ({checkDay, setListId, setUpdateData}) => {
   const [listData, setListData] = useState();
-  const [day, setDay] = useState(checkDay);
   useEffect(() => {
     axios.get("http://localhost:8080/read").then((res) => {
     setListData(res.data); 
@@ -29,7 +28,7 @@ const CheckList = ({checkDay, setListId}) => {
       <Header headText={"Check list"} />
       <ul>
         {listData && listData.filter((todo) => todo.date === checkDay).map((list, index) => {
-            return <List key={index} list={list}/>;
+            return <List key={index} list={list} setUpdateData={setUpdateData}/>;
           })}
       </ul>
     </CheckListBox>

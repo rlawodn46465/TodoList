@@ -48,6 +48,36 @@ app.delete("/delete", function(요청, 응답){
   });
 });
 
+app.post("/update", function(요청, 응답){
+  const 데이터 = 요청.query;
+  const id값 = Number(요청.query.id);
+  const obj = {
+    id: id값
+  }
+  const newObj = {
+    ...데이터, ...obj
+  }
+  fs.readFile("./data/listdata.json", (err, 값) => {
+    if (err) throw err;
+    const JSONdata = JSON.parse(값);
+    let 인덱스값 = 0;
+    JSONdata.filter((data,index) => {
+      if(data.id === newObj.id){
+        인덱스값 = index;
+      } 
+    });
+    let iscomplete값 = {
+      iscomplete:JSONdata[인덱스값].iscomplete
+    }
+    console.log(인덱스값)
+    console.log(newObj.id);
+    JSONdata[인덱스값] = {...newObj, ...iscomplete값};
+    console.log(JSONdata);
+    응답.send(데이터.id+'값 수정');
+    fs.writeFileSync('./data/listdata.json', JSON.stringify(JSONdata));
+  });
+})
+
 app.listen(port, function () {
   console.log(`포트 ${port}에서 서버가 열림`);
 });
