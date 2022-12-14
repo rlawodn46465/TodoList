@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import "./List.css";
 
 const ListBox = styled.li`
@@ -14,14 +15,17 @@ const ListBox = styled.li`
 `;
 
 const List = ({list}) => {
+  const navigate = useNavigate();
   const [isComplete, setIsComplete] = useState(list.iscomplete==='true');
   const checkHandler = ({ target }) => {
     setIsComplete(!isComplete);
   };
   const listDelete = () => {
-    axios.delete('http://localhost:8080/delete')
+    axios.delete('http://localhost:8080/delete?'+'id='+list.id)
     .then(res => {
-      
+      console.log(res.data);  
+      navigate('/')
+      window.location.reload();   
     })
   }
 
@@ -42,7 +46,7 @@ const List = ({list}) => {
       <button>
         수정
       </button>
-      <button>
+      <button onClick={listDelete}>
         삭제
       </button>
     </ListBox>

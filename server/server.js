@@ -40,10 +40,11 @@ app.post("/create", function (요청, 응답) {
 app.delete("/delete", function(요청, 응답){
   fs.readFile("./data/listdata.json", (err, 값) => {
     if (err) throw err;
+    const 데이터 = 요청.query;
     const JSONdata = JSON.parse(값);
-    let 새데이터 = [...JSONdata,newObj]
-    응답.send(newObj);
-    fs.writeFileSync('./data/listdata.json', JSON.stringify(새데이터));
+    const 필터값 = JSONdata.filter(data => data.id !== Number(데이터.id))
+    응답.send(데이터.id+'값 삭제');
+    fs.writeFileSync('./data/listdata.json', JSON.stringify(필터값));
   });
 });
 
