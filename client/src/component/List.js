@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import "./List.css";
@@ -13,10 +14,16 @@ const ListBox = styled.li`
 `;
 
 const List = ({list}) => {
-  const [isComplete, setIsComplete] = useState(list.iscomplete);
+  const [isComplete, setIsComplete] = useState(list.iscomplete==='true');
   const checkHandler = ({ target }) => {
     setIsComplete(!isComplete);
   };
+  const listDelete = () => {
+    axios.delete('http://localhost:8080/delete')
+    .then(res => {
+      
+    })
+  }
 
   return (
     <ListBox>
